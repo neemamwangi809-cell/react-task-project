@@ -16,9 +16,15 @@ function App() {
   function addTask(e) {
     e.preventDefault()
 
-    const text = taskText.trim()
+   const text = taskText.trim()
 
-    if (!text) return
+if (!text) return
+
+if (tasks.some((task) => task.text.toLowerCase() === text.toLowerCase())) {
+  return
+}
+
+
 
     setTasks([
       ...tasks,
@@ -65,8 +71,8 @@ function App() {
       <h1>My Tasks</h1>
 
       <p aria-live="polite">
-        Total tasks: {tasks.length}
-      </p>
+  Total tasks: {tasks.length} | Completed: {tasks.filter((task) => task.completed).length}
+</p>
 
       <form onSubmit={addTask} aria-label="Add a new task">
         <label htmlFor="task">New task</label>
