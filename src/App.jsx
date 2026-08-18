@@ -90,7 +90,13 @@ function getVisibleTasks() {
 </div>
       <ul>
   {getVisibleTasks().length === 0 ? (
-    <li>No tasks yet. Add a task to get started!</li>
+    <li>
+  {filter === 'active'
+    ? 'No active tasks.'
+    : filter === 'completed'
+      ? 'No completed tasks.'
+      : 'No tasks yet. Add a task to get started!'}
+</li>
   ) : (
     getVisibleTasks().map((task) => (
       <li key={task.id}>
