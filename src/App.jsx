@@ -92,6 +92,7 @@ function getVisibleTasks() {
     Completed
   </button>
 </div>
+<h2>Tasks</h2>
       <ul aria-label="Task list">
   {getVisibleTasks().length === 0 ? (
     <li>
