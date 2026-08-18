@@ -113,6 +113,9 @@ function App() {
       </div>
 
       <h2>Tasks</h2>
+      <p aria-live="polite">
+  Showing: {filter === 'all' ? 'All tasks' : filter === 'active' ? 'Active tasks' : 'Completed tasks'}
+</p>
 
       <ul aria-label="Task list">
         {getVisibleTasks().length === 0 ? (
