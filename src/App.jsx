@@ -101,6 +101,17 @@ setError('')
         {error && <p role="alert">{error}</p>}
 
         <button type="submit">Add Task</button>
+        <button
+  type="button"
+  onClick={() => {
+    setTaskText('')
+    setError('')
+  }}
+  >
+
+  Clear
+</button>
+
       </form>
 
       <div aria-label="Task filters">
