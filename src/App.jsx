@@ -35,7 +35,7 @@ setError('')
 
 
 
-
+setError('')
     setTasks([
       ...tasks,
       {
