@@ -109,7 +109,7 @@ function App() {
             setTaskText('')
             setError('')
           }}
-          disabled={!taskText}
+         disabled={!taskText.trim()}
         >
           Clear
         </button>
