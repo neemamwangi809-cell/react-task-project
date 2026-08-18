@@ -80,7 +80,7 @@ function App() {
       </p>
 
       <form onSubmit={addTask} aria-label="Add a new task">
-        <label htmlFor="task">New task</label>
+       <label htmlFor="task">New task to add</label>
 
         <input
           id="task"
