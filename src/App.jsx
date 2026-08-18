@@ -59,6 +59,7 @@ function getVisibleTasks() {
   return (
     <main>
       <h1>My Tasks</h1>
+      <p>{tasks.length} {tasks.length === 1 ? 'task' : 'tasks'}</p>
 
       <form onSubmit={addTask}>
         <label htmlFor="task">New task</label>
