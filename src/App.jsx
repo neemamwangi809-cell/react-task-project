@@ -19,7 +19,10 @@ function App() {
 
    const text = taskText.trim()
 
-if (!text) return
+if (!text) {
+  setError('Please enter a task.')
+  return
+}
 
 if (tasks.some((task) => task.text.toLowerCase() === text.toLowerCase())) {
   setError('That task already exists.')
