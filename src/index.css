@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+main {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+form button {
+  background: #2563eb;
+  color: white;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+li span {
+  flex: 1;
+}
+
+li button {
+  background: #dc2626;
+  color: white;
+}
+Sent
+Compose
+Write to Priancatintinabulator Marish
+li input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+main > div {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+main > div button {
+  background: #e5e7eb;
+}
+
+main > div button:hover {
+  background: #d1d5db;
+}
+form button:hover {
+  opacity: 0.85;
+}
+
+li button:hover {
+  opacity: 0.85;
+}

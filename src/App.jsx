@@ -1,0 +1,121 @@
+import { useEffect, useState } from 'react'
+function App() {
+ const [tasks, setTasks] = useState(() => {
+  const savedTasks = localStorage.getItem('tasks')
+  return savedTasks ? JSON.parse(savedTasks) : []
+})
+
+  const [taskText, setTaskText] = useState('')
+const [filter, setFilter] = useState('all')
+useEffect(() => {
+  localStorage.setItem('tasks', JSON.stringify(tasks))
+}, [tasks])
+  function addTask(e) {
+    e.preventDefault()
+
+    const text = taskText.trim()
+
+    if (!text) return
+
+    setTasks([
+      ...tasks,
+      {
+        id: Date.now(),
+        text: text,
+        completed: false,
+      },
+    ])
+
+    setTaskText('')
+  }
+
+  function toggleTask(id) {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, completed: !task.completed }
+        }
+
+        return task
+      })
+    )
+  }
+function getVisibleTasks() {
+  if (filter === 'active') {
+    return tasks.filter((task) => !task.completed)
+  }
+
+  if (filter === 'completed') {
+    return tasks.filter((task) => task.completed)
+  }
+
+  return tasks
+}
+  function deleteTask(id) {
+    function getVisibleTasks() {
+  if (filter === 'active') {
+    return tasks.filter((task) => !task.completed)
+  }
+
+  if (filter === 'completed') {
+    return tasks.filter((task) => task.completed)
+  }
+
+  return tasks
+}
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
+
+  return (
+    <main>
+      <h1>My Tasks</h1>
+
+      <form onSubmit={addTask}>
+        <label htmlFor="task">New task</label>
+
+        <input
+          id="task"
+          value={taskText}
+          onChange={(e) => setTaskText(e.target.value)}
+          placeholder="Enter a task"
+        />
+
+        <button type="submit">Add Task</button>
+      </form>
+<div>
+  <button type="button" onClick={() => setFilter('all')}>
+    All
+  </button>
+
+  <button type="button" onClick={() => setFilter('active')}>
+    Active
+  </button>
+
+  <button type="button" onClick={() => setFilter('completed')}>
+    Completed
+  </button>
+</div>
+      <ul>
+        {getVisibleTasks().map((task) => (
+          <li key={task.id}>
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => toggleTask(task.id)}
+            />
+
+            <span>
+              {task.completed ? 'Completed: ' + task.text : task.text}
+            </span>
+
+            <button type="button" onClick={() => deleteTask(task.id)}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </main>
+  )
+}
+
+export default App
