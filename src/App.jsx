@@ -67,11 +67,15 @@ function getVisibleTasks() {
         <label htmlFor="task">New task</label>
 
         <input
-          id="task"
-          value={taskText}
-          onChange={(e) => setTaskText(e.target.value)}
-          placeholder="Enter a task"
-        />
+  id="task"
+  value={taskText}
+  onChange={(e) => setTaskText(e.target.value)}
+  placeholder="Enter a task"
+  aria-describedby="task-help"
+/>
+<small id="task-help">
+  Enter a task you want to remember.
+</small>
 
         <button type="submit">Add Task</button>
       </form>
