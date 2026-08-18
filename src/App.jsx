@@ -139,8 +139,7 @@ setError('')
           Completed
         </button>
       </div>
-
-      <h2>Tasks</h2>
+     <h2>Tasks ({getVisibleTasks().length})</h2>
       <p aria-live="polite">
   Showing: {filter === 'all' ? 'All tasks' : filter === 'active' ? 'Active tasks' : 'Completed tasks'}
 </p>
