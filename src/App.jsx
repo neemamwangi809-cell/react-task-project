@@ -79,7 +79,7 @@ function getVisibleTasks() {
 
         <button type="submit">Add Task</button>
       </form>
-<div>
+<<div aria-label="Task filters">
   <button type="button" onClick={() => setFilter('all')}>
     All
   </button>
