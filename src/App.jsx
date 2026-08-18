@@ -168,10 +168,10 @@ setError('')
   }`}
 />
 
-           <span>
-  {task.completed ? 'Completed: ' : 'Active: '}
+          <span>
+  <strong>{task.completed ? 'Completed: ' : 'Active: '}</strong>
   {task.text}
-</span>  
+</span>
 
               <button type="button" onClick={() => deleteTask(task.id)}>
                 Delete
