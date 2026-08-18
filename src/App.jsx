@@ -51,20 +51,10 @@ function getVisibleTasks() {
 
   return tasks
 }
-  function deleteTask(id) {
-    function getVisibleTasks() {
-  if (filter === 'active') {
-    return tasks.filter((task) => !task.completed)
-  }
-
-  if (filter === 'completed') {
-    return tasks.filter((task) => task.completed)
-  }
-
-  return tasks
+ function deleteTask(id) {
+  setTasks(tasks.filter((task) => task.id !== id))
 }
-    setTasks(tasks.filter((task) => task.id !== id))
-  }
+
 
   return (
     <main>
