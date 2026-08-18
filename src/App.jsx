@@ -158,10 +158,13 @@ setError('')
           getVisibleTasks().map((task) => (
             <li key={task.id}>
               <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleTask(task.id)}
-              />
+  type="checkbox"
+  checked={task.completed}
+  onChange={() => toggleTask(task.id)}
+  aria-label={`Mark ${task.text} as ${
+    task.completed ? 'active' : 'completed'
+  }`}
+/>
 
               <span>
                 {task.completed ? 'Completed: ' + task.text : task.text}
