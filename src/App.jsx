@@ -17,30 +17,26 @@ function App() {
   function addTask(e) {
     e.preventDefault()
 
-   const text = taskText.trim()
+    const text = taskText.trim()
 
-if (!text) {
-  setError('Please enter a task.')
-  return
-}
+    if (!text) {
+      setError('Please enter a task.')
+      return
+    }
 
-if (tasks.some((task) => task.text.toLowerCase() === text.toLowerCase())) {
-  setError('That task already exists.')
-  setTaskText('')
-  return
-}
+    if (tasks.some((task) => task.text.toLowerCase() === text.toLowerCase())) {
+      setError('That task already exists.')
+      setTaskText('')
+      return
+    }
 
-setError('')
+    setError('')
 
-
-
-
-setError('')
     setTasks([
       ...tasks,
       {
         id: Date.now(),
-        text: text,
+        text,
         completed: false,
       },
     ])
@@ -50,14 +46,16 @@ setError('')
 
   function toggleTask(id) {
     setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, completed: !task.completed }
-        }
-
-        return task
-      })
+      tasks.map((task) =>
+        task.id === id
+          ? { ...task, completed: !task.completed }
+          : task
+      )
     )
+  }
+
+  function deleteTask(id) {
+    setTasks(tasks.filter((task) => task.id !== id))
   }
 
   function getVisibleTasks() {
@@ -72,17 +70,14 @@ setError('')
     return tasks
   }
 
-  function deleteTask(id) {
-    setTasks(tasks.filter((task) => task.id !== id))
-  }
-
   return (
     <main>
       <h1>My Tasks</h1>
 
       <p aria-live="polite">
-  Total tasks: {tasks.length} | Completed: {tasks.filter((task) => task.completed).length}
-</p>
+        Total tasks: {tasks.length} | Completed:{' '}
+        {tasks.filter((task) => task.completed).length}
+      </p>
 
       <form onSubmit={addTask} aria-label="Add a new task">
         <label htmlFor="task">New task</label>
@@ -90,10 +85,10 @@ setError('')
         <input
           id="task"
           value={taskText}
-         onChange={(e) => {
-  setTaskText(e.target.value)
-  setError('')
-}}
+          onChange={(e) => {
+            setTaskText(e.target.value)
+            setError('')
+          }}
           placeholder="Enter a task"
           aria-describedby="task-help"
         />
@@ -101,21 +96,23 @@ setError('')
         <small id="task-help">
           Enter a task you want to remember.
         </small>
+
         {error && <p role="alert">{error}</p>}
 
-        <button type="submit">Add Task</button>
-       <button
-  type="button"
-  onClick={() => {
-    setTaskText('')
-    setError('')
-  }}
-  disabled={!taskText}
-  >
+        <button type="submit" disabled={!taskText.trim()}>
+          Add Task
+        </button>
 
-  Clear
-</button>
-
+        <button
+          type="button"
+          onClick={() => {
+            setTaskText('')
+            setError('')
+          }}
+          disabled={!taskText}
+        >
+          Clear
+        </button>
       </form>
 
       <div aria-label="Task filters">
@@ -143,10 +140,17 @@ setError('')
           Completed
         </button>
       </div>
-     <h2>Tasks ({getVisibleTasks().length})</h2>
+
+      <h2>Tasks ({getVisibleTasks().length})</h2>
+
       <p aria-live="polite">
-  Showing: {filter === 'all' ? 'All tasks' : filter === 'active' ? 'Active tasks' : 'Completed tasks'}
-</p>
+        Showing:{' '}
+        {filter === 'all'
+          ? 'All tasks'
+          : filter === 'active'
+            ? 'Active tasks'
+            : 'Completed tasks'}
+      </p>
 
       <ul aria-label="Task list">
         {getVisibleTasks().length === 0 ? (
@@ -159,25 +163,32 @@ setError('')
           </li>
         ) : (
           getVisibleTasks().map((task) => (
-           <li
-  key={task.id}
-  style={{ textDecoration: task.completed ? 'line-through' : 'none' }}
-  >
+            <li
+              key={task.id}
+              style={{
+                textDecoration: task.completed ? 'line-through' : 'none',
+              }}
+            >
               <input
-  type="checkbox"
-  checked={task.completed}
-  onChange={() => toggleTask(task.id)}
-  aria-label={`Mark ${task.text} as ${
-    task.completed ? 'active' : 'completed'
-  }`}
-/>
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleTask(task.id)}
+                aria-label={`Mark ${task.text} as ${
+                  task.completed ? 'active' : 'completed'
+                }`}
+              />
 
-          <span>
-  <strong>{task.completed ? 'Completed: ' : 'Active: '}</strong>
-  {task.text}
-</span>
+              <span>
+                <strong>
+                  {task.completed ? 'Completed: ' : 'Active: '}
+                </strong>
+                {task.text}
+              </span>
 
-              <button type="button" onClick={() => deleteTask(task.id)}>
+              <button
+                type="button"
+                onClick={() => deleteTask(task.id)}
+              >
                 Delete
               </button>
             </li>
