@@ -19,10 +19,12 @@ function App() {
    const text = taskText.trim()
 
 if (!text) return
-
 if (tasks.some((task) => task.text.toLowerCase() === text.toLowerCase())) {
+  setTaskText('')
   return
 }
+
+
 
 
 
