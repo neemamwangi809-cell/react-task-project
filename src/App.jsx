@@ -87,7 +87,28 @@ function getVisibleTasks() {
   </button>
 </div>
       <ul>
-        {getVisibleTasks().map((task) => (
+  {getVisibleTasks().length === 0 ? (
+    <li>No tasks yet. Add a task to get started!</li>
+  ) : (
+    getVisibleTasks().map((task) => (
+      <li key={task.id}>
+        <input
+          type="checkbox"
+          checked={task.completed}
+          onChange={() => toggleTask(task.id)}
+        />
+
+        <span>
+          {task.completed ? 'Completed: ' + task.text : task.text}
+        </span>
+
+        <button type="button" onClick={() => deleteTask(task.id)}>
+          Delete
+        </button>
+      </li>
+    ))
+  )}
+</ul>
           <li key={task.id}>
             <input
               type="checkbox"
