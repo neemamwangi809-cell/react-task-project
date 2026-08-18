@@ -63,7 +63,7 @@ function getVisibleTasks() {
   Total tasks: {tasks.length} | Completed: {tasks.filter((task) => task.completed).length}
 </p>
 
-      <form onSubmit={addTask}>
+      <form onSubmit={addTask} aria-label="Add a new task">
         <label htmlFor="task">New task</label>
 
         <input
