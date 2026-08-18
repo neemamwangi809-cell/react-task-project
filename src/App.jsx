@@ -60,7 +60,7 @@ function getVisibleTasks() {
     <main>
       <h1>My Tasks</h1>
       <p aria-live="polite">
-  Total tasks: {tasks.length}
+  Total tasks: {tasks.length} | Completed: {tasks.filter((task) => task.completed).length}
 </p>
 
       <form onSubmit={addTask}>
