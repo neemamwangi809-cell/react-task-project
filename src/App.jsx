@@ -7,6 +7,7 @@ function App() {
   })
 
   const [taskText, setTaskText] = useState('')
+  const [error, setError] = useState('')
   const [filter, setFilter] = useState('all')
 
   useEffect(() => {
@@ -19,10 +20,14 @@ function App() {
    const text = taskText.trim()
 
 if (!text) return
+
 if (tasks.some((task) => task.text.toLowerCase() === text.toLowerCase())) {
+  setError('That task already exists.')
   setTaskText('')
   return
 }
+
+setError('')
 
 
 
@@ -90,6 +95,7 @@ if (tasks.some((task) => task.text.toLowerCase() === text.toLowerCase())) {
         <small id="task-help">
           Enter a task you want to remember.
         </small>
+        {error && <p role="alert">{error}</p>}
 
         <button type="submit">Add Task</button>
       </form>
