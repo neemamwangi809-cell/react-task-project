@@ -87,7 +87,10 @@ setError('')
         <input
           id="task"
           value={taskText}
-          onChange={(e) => setTaskText(e.target.value)}
+         onChange={(e) => {
+  setTaskText(e.target.value)
+  setError('')
+}}
           placeholder="Enter a task"
           aria-describedby="task-help"
         />
