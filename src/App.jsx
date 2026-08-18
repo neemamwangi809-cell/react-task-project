@@ -155,7 +155,10 @@ setError('')
           </li>
         ) : (
           getVisibleTasks().map((task) => (
-            <li key={task.id}>
+           <li
+  key={task.id}
+  style={{ textDecoration: task.completed ? 'line-through' : 'none' }}
+  >
               <input
   type="checkbox"
   checked={task.completed}
